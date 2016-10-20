@@ -69,6 +69,16 @@ nmap L :tabn<CR>
 " save session , == leader
 nnoremap <leader>s :mksession!<CR>
 
+" Compile and display latex using evince
+command Latex execute "silent !pdflatex % > /dev/null && evince %:r.pdf > /dev/null 2>&1 &" | redraw!
+map <F2> :Latex<CR>
+
+" Toggle spell checking
+" z= to show spelling suggestions
+map <F3> :setlocal spell! spelllang=en_us<CR>
+
+" Toggle paste mode
+map <F4> :setlocal paste!<CR>
 
 " adjust configuration for such hostile environment as Windows {{{
 if has("darwin")
@@ -116,3 +126,11 @@ command -bar -nargs=0 -range=% TrimSpaces <line1>,<line2>call TrimSpaces()
 nnoremap <F12>     :ShowSpaces 1<CR>
 nnoremap <S-F12>   m`:TrimSpaces<CR>``
 vnoremap <S-F12>   :TrimSpaces<CR>
+
+" Ignore these files when completing names
+set wildignore=.svn,CVS,.git,*.o,*.a,*.class,*.mo,*.la,*.so,*.obj,*.swp,*.jpg,*.png,*.xpm,*.gif,*.pdf,*.bak,*.beam
+
+inoremap <Left> <NOP>
+inoremap <Right> <NOP>
+inoremap <Up> <NOP>
+inoremap <Down> <NOP>
